@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+</head>
+    
+<body>
+<h2>Sign in</h2>
+
+<form ng-app="" ng-controller="validateCtrl" name="myForm" novalidate method="POST" action="validate.php">
+<table border=0 cellspacing="20px" cellpadding="20px" align="center">
+<tr>
+<td>Username:<br>
+<td><input type="text" name="user" ng-model="user" required>
+<span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+<span ng-show="myForm.user.$error.required">Username is required.</span>
+</span>
+</tr>
+<tr>
+<td>Password:</td>
+<td><input type="password" name="password" ng-model="pass" placeholder="Password" required>
+<span style="color:red" ng-show="form1.pass.$dirty && form1.pass.$invalid">
+<span ng-show="form1.pass.$error.required">Password is required.</span>
+</tr>
+<tr>
+<td><input type="submit" 
+ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||  
+myForm.email.$dirty && myForm.email.$invalid">
+</tr>
+</table>
+</form>
+
+<script>
+function validateCtrl($scope) {
+   
+}
+</script>
+
+</body>
+</html>

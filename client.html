@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="">
+    <head >
+	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript">
+            // our socket.io code goes here
+			
+			var socketio = io.connect("127.0.0.1:1337");
+			socketio.on("message_to_client", function(data) {
+			//document.getElementById("n2").innerHTML=("<p ng-bind='name1'>hfch </p>");
+    document.getElementById("chatlog").innerHTML = ("<hr/>" +
+    data['message'] + document.getElementById("chatlog").innerHTML);
+	
+});
+function sendMessage() {
+    var msg = document.getElementById("message_input").value;
+	//include file here
+    socketio.emit("message_to_server", { message : msg});
+}
+        </script>
+    </head>
+    <body >
+        <input type="text" name="de" id="message_input" ng-model="name1">
+			<span ng-bind="name1"><script>{{'name1'}}</script></span>
+        <button onclick="sendMessage()">send</button>
+        <div id="chatlog"></div>
+    </body>
+</html>

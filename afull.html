@@ -1,0 +1,63 @@
+<html ng-app="">
+<head>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+</head>
+<body ng-controller="signup">
+<center><h1>Sign up</h1>
+<form name="form1"  novalidate method="POST" action="add_data.php">
+<table border=0 cellspacing="20px" cellpadding="20px">
+<tr>
+<td>Name:
+<td><input type="text" name="name" ng-model="fname" placeholder="Full Name" required>
+<span style="color:red" ng-show="form1.fname.$dirty && form1.fname.$invalid">
+<span ng-show="form1.fname.$error.required">Username is required.</span>
+</tr>
+<tr>
+<td>Password:</td>
+<td><input type="password" name="password" ng-model="pass" placeholder="Password" required>
+<span style="color:red" ng-show="form1.pass.$dirty && form1.pass.$invalid">
+<span ng-show="form1.pass.$error.required">Password is required.</span>
+</tr>
+<tr>
+<td>Retype Password:</td>
+<td><input type="password" name="rpassword" ng-model="rpass" placeholder="Repeat Password" required></td>
+<span style="color:red" ng-show="form1.rpass.$dirty && form1.rpass.$invalid">
+<span ng-show="form1.rpass.$error.required">Password is required.</span>
+</tr>
+<tr>
+<td>Email:
+<td><input type="email" name="email" ng-model="email" placeholder="Email id" required>
+<span style="color:red" ng-show="form1.email.$dirty && form1.email.$invalid">
+<span ng-show="form1.email.$error.required">Email is required.</span>
+<span ng-show="form1.email.$error.email">Invalid email address.</span>
+</tr>
+
+
+<tr><td><input type=submit  value="signup" ng-disabled="form1.fname.$dirty && form1.fname.$invalid || form1.lname.$dirty && form1.lname.$invalid || 
+form1.pass.$dirty && form1.pass.$invalid || form1.rpass.$dirty && form1.rpass.$invalid || form1.email.$dirty && form1.email.$invalid || error || incomplete"></p>
+</tr>
+</table>
+</form>
+<script>
+function signup($scope) {
+$scope.error=false;
+$scope.incomplete=false;
+$scope.$watch('pass',function() {$scope.test();});
+$scope.$watch('rpass',function() {$scope.test();});
+
+$scope.test = function() {
+  if ($scope.pass !== $scope.rpass) {
+    $scope.error = true;
+    } else {
+    $scope.error = false;
+  }
+ 
+
+};
+
+
+ 
+}
+</script>
+</body>
+</html>
